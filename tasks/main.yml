@@ -1,0 +1,39 @@
+---
+
+- name: Copy HPE Insight Manager package to server
+  tags: insight
+  copy: src={{ insight_install_package }} dest=/tmp mode=0755
+
+- name: Extract package to tmpdir
+  tags: insight
+  shell:
+    cmd: "/tmp/{{ insight_install_package }} --noexec --target {{ insight_target_dir }}"
+    creates: "{{ insight_target_dir }}"
+
+- name: Copy HPE updated management Homepages to server
+  tags: insight
+  copy: src={{ insight_smh_update }} dest={{ insight_target_dir }}
+
+- name: Copy HPE Management Homepage templates to server
+  tags: insight
+  copy: src={{ insight_smh_templates }} dest={{ insight_target_dir }}
+
+- name: Copy HPE SNMP Agents to server
+  tags: insight
+  copy: src={{ insight_snmp_agents }} dest={{ insight_target_dir }}
+
+- name: Copy HPE Health utils to server
+  tags: insight
+  copy: src={{ insight_health }} dest={{ insight_target_dir }}
+
+- name: Install necessary packages
+  tags: insight, yum
+  yum: 
+    name: "{{insight_packages}}" 
+    state: installed
+
+- name: Start hpsmdb service
+  tags: insight
+  service:
+    name: "{{insight_service }}"
+    state: started

@@ -1,0 +1,20 @@
+---
+insight_install_package: "SIM_7.6_Z7550-96286.bin"
+insight_smh_templates: "hp-smh-templates-10.8.1-1487.3.noarch.rpm"
+insight_snmp_agents: "hp-snmp-agents-10.80-2965.21.rhel7.x86_64.rpm"
+insight_health: "hp-health-10.90-1873.8.rhel7.x86_64.rpm"
+insight_smh_update: "hpsmh-7.6.5-3.x86_64.rpm"
+insight_target_dir: "/tmp/insight"
+insight_packages:
+  - "{{ insight_target_dir }}/hpsmdb-rhel7-8.2.1-1HPSIM.x86_64.rpm"
+  - "{{ insight_target_dir }}/hpsmdb-rhel7-server-8.2.1-1HPSIM.x86_64.rpm"
+  - "{{ insight_target_dir }}/hpsmdb-rhel7-libs-8.2.1-1HPSIM.x86_64.rpm"
+  - "{{ insight_target_dir }}/hpsim-pgsql-config-C.07.06.00.00r76rc05-1.i386.rpm"
+  - "{{ insight_target_dir }}/hpsmh-7.6.5-3.x86_64.rpm"
+  - "{{ insight_target_dir }}/hp-health-10.90-1873.8.rhel7.x86_64.rpm"
+  - "{{ insight_target_dir }}/hp-snmp-agents-10.80-2965.21.rhel7.x86_64.rpm"
+  - "{{ insight_target_dir }}/hp-smh-templates-10.8.1-1487.3.noarch.rpm"
+insight_service: hpsmdb
+snmp_packages:
+  - "net-snmp-utils"
+  - "net-snmp"
